@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="flood_it.css">
+<head>
+  <meta charset="UTF-8">
+  <title>FloodIt + Solver</title>
+  <style>
+    #board { display: grid; gap: 0; }
+    .cell {
+      width: 40px; height: 40px;
+      border: none; cursor: pointer;
+      font-size: 0;
+    }
+  </style>
+</head>
+<body>
+    <h1>FloodIt JS</h1>
+  <div id="controls"></div>
+  <div id="board"></div>
+  <div id="moves"></div>
+  <div id="seed"></div>
+  <div id="status"></div>
+  <div id=""options" style="margin-top:10px;">
+    <label for="seed-value">Seed:</label>
+    <input type="text" id="seed-value" value="">
+    <button id="new-game-seed-button">New Game From Seed</button>
+    <label for="lookahead">Lookahead:</label>
+    <input type="number" id="lookahead-input" value="5" min="1" max="10" style="width:50px;">
+    <button id="update-lookahead-button" class=""top-button">Update Lookahead</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/seedrandom@3.0.5/seedrandom.min.js"></script>
+  <script type="module">
+    import {FloodItState, newFloodIt} from './flood_it.js';
+    import {updateLookahead, renderBoard, renderControls, newGame, newGameFromSeed, handleMove} from './main.js';
+    document.getElementById('new-game-seed-button').onclick = newGameFromSeed;
+    document.getElementById('update-lookahead-button').onclick = () => updateLookahead();
+
+    // Initialize game on page load
+    newGame();
+    
+  </script>
+</body>
+</html>
